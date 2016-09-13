@@ -11,7 +11,8 @@ namespace timurmelnikov\widgets;
 use Yii;
 use yii\base\Widget;
 use yii\bootstrap\Modal;
-use yii\helpers\Html;
+
+//use yii\helpers\Html;
 
 /**
  * @author Timur Melnikov <melnilovt@gmail.com>
@@ -19,24 +20,34 @@ use yii\helpers\Html;
 class WebcamShoot extends Widget {
 
     /**
-     * model name for active field
+     * Текст заголовка диалогового окна (с тегами)
      */
-    public $model;
+    public $headerText = '<h4>WEB камера</h4>';
 
     /**
-     * attribut of model
+     * Текст заголовка окна видео (с тегами)
      */
-    public $attribute;
+    public $videoText = 'Видео';
 
     /**
-     * width of photo canvas : in pixel
+     * Текст заголовка окна видео (с тегами)
      */
-    public $width = 300;
+    public $photoText = 'Фото';
 
     /**
-     * height of photo canvas : in pixel
+     * Атрибут - цель, для закгрузки в него фотографии.
      */
-    public $height = 350;
+    public $targetAttribute;
+
+    /**
+     * Ширина видео и фото в пикселях
+     */
+    public $width = 380;
+
+    /**
+     * Высота видео и фото в пикселях (рассчитывается автоматически)
+     */
+    private $height;
 
     /**
      * ID of canvas element
@@ -63,6 +74,8 @@ class WebcamShoot extends Widget {
         $view = $this->getView();
         $bundle = WebcamShootAsset::register($view);
         $this->imgPhoto = $bundle->baseUrl . '/images/web-camera.png';
+
+        $this->height = $this->width / 4 * 3;
     }
 
     /**
@@ -86,18 +99,18 @@ class WebcamShoot extends Widget {
 
         <div  class="col-md-6 col-lg-6">
             <div class="panel panel-default">
-                <div class="panel-heading"><span class="glyphicon glyphicon-facetime-video"></span> Видео</div>
+                <div class="panel-heading"><span class="glyphicon glyphicon-facetime-video"></span> {$this->videoText}</div>
                 <div class="panel-body ">
-                    <video class="img-rounded center-block" id="video" width="320" height="240" autoplay></video>
+                    <video class="img-rounded center-block" id="video" width="{$this->width}" height="$this->height" autoplay></video>
                 </div>
             </div>
         </div>
 
         <div class="col-md-6 col-lg-6">
             <div class="panel panel-default">
-                <div class="panel-heading"><span class="glyphicon glyphicon-picture"></span> Фото</div>
+                <div class="panel-heading"><span class="glyphicon glyphicon-picture"> </span> {$this->photoText}</div>
                 <div class="panel-body">
-                    <canvas  id="canvas" width="320" height="240" style="display: none"></canvas>
+                    <canvas  id="canvas" width="{$this->width}" height="{$this->height}" style="display: none"></canvas>
                     <img class="img-rounded center-block" src="{$this->imgPhoto}"  id="photo">
                 </div>
             </div>
@@ -105,13 +118,10 @@ class WebcamShoot extends Widget {
 
     </div>
 
-
     <div class="row">
 
         <div class="col-md-12 col-lg-12">
-
                 <a class="btn btn-warning center-block" href="#" id="capture" class="booth-capture-button">Сделать снимок</a>
-
         </div>
 
     </div>
@@ -121,12 +131,12 @@ HTML;
 
 
         Modal::begin([
-            'header' => '<h4>WEB камера</h4>',
+            'header' => $this->headerText,
             'toggleButton' => ['label' => 'Сделать фото камерой'],
             'size' => 'modal-lg',
             'footer' => '<div class="form-group">
-                            <button type="submit" class="btn btn-primary">ОК</button> 
-                            <button type="button" class="btn btn-default">Отмена</button> 
+                            <button type="button" class="btn btn-primary" data-dismiss="modal">ОК</button> 
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button> 
                          </div>',
         ]);
 
@@ -135,11 +145,6 @@ HTML;
         Modal::end();
 
 
-
-
-
-
-        //return ;
     }
 
 }

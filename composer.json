@@ -1,0 +1,27 @@
+{
+    "name": "timurmelnikov/yii2-webcam-shoot",
+    "description": "Yii2 виджет для работы с WEB камерой",
+    "keywords": [
+        "yii2",
+        "web-camera",
+        "widget",
+        "jQuery"
+    ],
+    "type": "yii2-extension",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Timur Melnikov",
+            "email": "melnilovt@gmail.com"
+        }
+    ],
+    "require": {
+        "yiisoft/yii2": "*",
+        "yiisoft/yii2-bootstrap": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "timurmelnikov\\widgets\\": ""
+        }
+    }
+}
