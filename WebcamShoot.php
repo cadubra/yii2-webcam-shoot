@@ -121,7 +121,7 @@ class WebcamShoot extends Widget {
     <div class="row">
 
         <div class="col-md-12 col-lg-12">
-                <a class="btn btn-warning center-block" href="#" id="capture" class="booth-capture-button">Сделать снимок</a>
+                <button id="yii2-webcam-shoot-capture" class="btn btn-warning btn-block">Сделать снимок</button>  
         </div>
 
     </div>
@@ -132,19 +132,18 @@ HTML;
 
         Modal::begin([
             'header' => $this->headerText,
-            'toggleButton' => ['label' => 'Сделать фото камерой'],
+            'toggleButton' => ['label' => 'Сделать фото камерой555', 'id'=>'rrrrrr'],
             'size' => 'modal-lg',
+            
             'footer' => '<div class="form-group">
-                            <button type="button" class="btn btn-primary" data-dismiss="modal">ОК</button> 
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button> 
+                            <button id="yii2-webcam-shoot-ok" type="button" class="btn btn-primary" data-dismiss="modal">ОК</button> 
+                            <button id="yii2-webcam-shoot-cancel" type="button" class="btn btn-default" data-dismiss="modal">Отмена</button> 
                          </div>',
         ]);
 
         echo $html;
 
         Modal::end();
-
-
     }
 
 }
