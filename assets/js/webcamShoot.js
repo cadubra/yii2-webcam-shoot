@@ -21,7 +21,7 @@
 
     });
     document.getElementById('capture').addEventListener('click', function () {
-        context.drawImage(video, 0, 0, 320, 240);
+        context.drawImage(video, 0, 0, $("#video").width(), $("#video").height());
         photo.setAttribute('src', canvas.toDataURL('image/png'));
     });
 })();
