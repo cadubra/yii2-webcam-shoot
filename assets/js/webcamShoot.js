@@ -1,9 +1,14 @@
 $(document).ready(function () {
 
+//Запоминаем "заставочную" картинку для окна фото
+    var attrPhoto = $("#photo").attr('src');
+
     $("#rrrrrr").on('click', function () {
 
         //Очищаем окно видео
         $("#video").attr('src', '');
+        //ОВставляем "заставочную" картинку для окна фото
+        $("#photo").attr('src', attrPhoto);
 
         (function () {
             var video = document.getElementById('video'),
