@@ -18,10 +18,11 @@ $(document).ready(function () {
                     vendorUrl = window.URL || window.webkitURL;
             navigator.getMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.
                     mozGetUserMedia || navigator.msGetUserMedia;
-            navigator.getMedia({
-                video: true,
-                audio: false
-            },
+            navigator.getMedia(
+                    {
+                        video: true,
+                        audio: false
+                    },
                     function (stream) {//Если все ОК
                         video.src = vendorUrl.createObjectURL(stream);
                         video.play();
@@ -45,8 +46,8 @@ $(document).ready(function () {
                         $('#yii2-webcam-shoot-ok').attr('disabled', 'disabled');
                         //Активация алерта, при ошибке
                         $('#webcam-error').show();
-
-                    });
+                    }
+            );
 
         })();
 
