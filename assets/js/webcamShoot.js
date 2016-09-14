@@ -7,7 +7,7 @@ $(document).ready(function () {
 
         //Очищаем окно видео
         $("#video").attr('src', '');
-        //ОВставляем "заставочную" картинку для окна фото
+        //Вставляем "заставочную" картинку для окна фото
         $("#photo").attr('src', attrPhoto);
 
         (function () {
@@ -54,10 +54,7 @@ $(document).ready(function () {
         //Выравнивание высоты фото, по высоте видео
         $("#photo").height($("#video").height());
 
-        //Сохранение фото в текстовом формате, для передачи на сервер
-        $("#yii2-webcam-shoot-ok").on('click', function () {
-            $("#textImage").val($("#photo").attr('src'));
-        });
+
 
     });
 

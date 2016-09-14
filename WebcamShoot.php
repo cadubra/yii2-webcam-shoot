@@ -35,9 +35,14 @@ class WebcamShoot extends Widget {
     public $photoText = 'Фото';
 
     /**
-     * Атрибут - цель, для закгрузки в него фотографии.
+     * ID атрибута - цельи, для закгрузки в него фотографии (поле тег - input).
      */
-    public $targetAttribute;
+    public $targetInputID = null;
+
+    /**
+     * ID атрибута - цельи, для закгрузки в него фотографии (картинка тег - img).
+     */
+    public $targetImgID = null;
 
     /**
      * Ширина видео и фото в пикселях
@@ -73,9 +78,28 @@ class WebcamShoot extends Widget {
     public function init() {
         $view = $this->getView();
         $bundle = WebcamShootAsset::register($view);
+
         $this->imgPhoto = $bundle->baseUrl . '/images/web-camera.png';
 
+        //Рассчет и присвоение высоты фото
         $this->height = $this->width / 4 * 3;
+
+        //Клиентский "динамически управляемый" JS
+        $script = <<<JS
+$("#yii2-webcam-shoot-ok").on('click', function () {
+
+    if ({$this->targetInputID} != null) {
+        //Сохранение фото в текстовом формате, для передачи на сервер
+        $("#{$this->targetInputID}").val($("#photo").attr('src'));
+    }
+    if ({$this->targetImgID} != null) {
+        //Заполнение картинки
+        $("#{$this->targetImgID}").attr('src', $("#photo").attr('src'));
+    }
+    
+});
+JS;
+        $view->registerJs($script);
     }
 
     /**
@@ -132,9 +156,8 @@ HTML;
 
         Modal::begin([
             'header' => $this->headerText,
-            'toggleButton' => ['label' => 'Сделать фото камерой555', 'id'=>'rrrrrr'],
+            'toggleButton' => ['label' => 'Сделать фото камерой555', 'id' => 'rrrrrr'],
             'size' => 'modal-lg',
-            
             'footer' => '<div class="form-group">
                             <button id="yii2-webcam-shoot-ok" type="button" class="btn btn-primary" data-dismiss="modal">ОК</button> 
                             <button id="yii2-webcam-shoot-cancel" type="button" class="btn btn-default" data-dismiss="modal">Отмена</button> 
