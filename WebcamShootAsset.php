@@ -18,6 +18,7 @@ class WebcamShootAsset extends AssetBundle {
     public $sourcePath = '@vendor/timurmelnikov/yii2-webcam-shoot/assets';
     public $depends = [
         'yii\web\JqueryAsset',
+        'yii\bootstrap\BootstrapAsset'
     ];
 
     public function init() {

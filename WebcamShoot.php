@@ -12,8 +12,6 @@ use Yii;
 use yii\base\Widget;
 use yii\bootstrap\Modal;
 
-//use yii\helpers\Html;
-
 /**
  * @author Timur Melnikov <melnilovt@gmail.com>
  */
@@ -33,6 +31,21 @@ class WebcamShoot extends Widget {
      * Текст заголовка окна видео (с тегами)
      */
     public $photoText = 'Фото';
+
+    /**
+     * Текст кнопки вызова диалогового окна
+     */
+    public $buttonText = 'Сделать снимок WEB камерой';
+
+    /**
+     * Текст заголовка сообщения об ошибке - недоступности камеры
+     */
+    public $errorHeader = 'Ошибка!';
+
+    /**
+     * Текст сообщения об ошибке - недоступности камеры
+     */
+    public $errorText = 'Камера недоступна или что-то пошло не так...';
 
     /**
      * ID атрибута - цельи, для закгрузки в него фотографии (поле тег - input).
@@ -55,20 +68,9 @@ class WebcamShoot extends Widget {
     private $height;
 
     /**
-     * ID of canvas element
+     * Опции
      */
-    public $canvasID = 'webcam-shoot-canvas';
-
-    /**
-     * ID of video element
-     */
-    public $videoID = 'webcam-shoot-video';
-
-    /**
-     * ID of photo element
-     */
-    public $photoID = 'webcam-shoot-photo';
-    public $htmlOptions = array();
+    public $htmlOptions = [];
 
     /*
      * Тизер фото
@@ -86,15 +88,16 @@ class WebcamShoot extends Widget {
 
         //Клиентский "динамически управляемый" JS
         $script = <<<JS
+                
 $("#yii2-webcam-shoot-ok").on('click', function () {
 
     if ({$this->targetInputID} != null) {
         //Сохранение фото в текстовом формате, для передачи на сервер
-        $("#{$this->targetInputID}").val($("#photo").attr('src'));
+        $("#{$this->targetInputID}").val($("#yii2-webcam-shoot-photo").attr('src'));
     }
     if ({$this->targetImgID} != null) {
         //Заполнение картинки
-        $("#{$this->targetImgID}").attr('src', $("#photo").attr('src'));
+        $("#{$this->targetImgID}").attr('src', $("#yii2-webcam-shoot-photo").attr('src'));
     }
     
 });
@@ -112,8 +115,8 @@ JS;
     <div class="row">
 
         <div class="col-md-12 col-lg-12">
-            <div id="webcam-error" class="alert alert-danger" style="display: none">
-                <strong>Ошибка!</strong> Камера недоступна или что-то пошло не так...
+            <div id="yii2-webcam-shoot-error" class="alert alert-danger" style="display: none">
+                <strong>{$this->errorHeader}</strong> {$this->errorText}
             </div>
         </div>
 
@@ -125,7 +128,7 @@ JS;
             <div class="panel panel-default">
                 <div class="panel-heading"><span class="glyphicon glyphicon-facetime-video"></span> {$this->videoText}</div>
                 <div class="panel-body ">
-                    <video class="img-rounded center-block" id="video" width="{$this->width}" height="$this->height" autoplay></video>
+                    <video class="img-rounded center-block" id="yii2-webcam-shoot-video" width="{$this->width}" height="$this->height" autoplay></video>
                 </div>
             </div>
         </div>
@@ -134,8 +137,8 @@ JS;
             <div class="panel panel-default">
                 <div class="panel-heading"><span class="glyphicon glyphicon-picture"> </span> {$this->photoText}</div>
                 <div class="panel-body">
-                    <canvas  id="canvas" width="{$this->width}" height="{$this->height}" style="display: none"></canvas>
-                    <img class="img-rounded center-block" src="{$this->imgPhoto}"  id="photo">
+                    <canvas  id="yii2-webcam-shoot-canvas" width="{$this->width}" height="{$this->height}" style="display: none"></canvas>
+                    <img class="img-rounded center-block" src="{$this->imgPhoto}"  id="yii2-webcam-shoot-photo">
                 </div>
             </div>
         </div>
@@ -151,12 +154,9 @@ JS;
     </div>
 HTML;
 
-
-
-
         Modal::begin([
             'header' => $this->headerText,
-            'toggleButton' => ['label' => 'Сделать фото камерой555', 'id' => 'rrrrrr'],
+            'toggleButton' => ['label' => $this->buttonText, 'id' => 'yii2-webcam-shoot-show', 'class' => 'btn btn-primary'],
             'size' => 'modal-lg',
             'footer' => '<div class="form-group">
                             <button id="yii2-webcam-shoot-ok" type="button" class="btn btn-primary" data-dismiss="modal">ОК</button> 
