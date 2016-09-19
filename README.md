@@ -39,4 +39,8 @@ echo WebcamShoot::widget([
 ```
 
 ## Скриншоты
-![alt tag](https://lh3.googleusercontent.com/b4jAv_4rJ1RDW4daO5fldoE1OS537aBPEbrXfMkPbdS1DH6mCsP8cit3NZ4nPGUQsgyu61i8k0pU5JAgQIcrg_VU2F25PR8)
+![alt tag](https://lh3.googleusercontent.com/B_czT9ySo4OlpcC_YDrCL3mjNJoVb86zdFK1nFp_Jj5pz-YBINoW5U6N3h5hZSjPFgKp6Rxek7_D_phAqomeZYpUpCd-oUM)
+
+![alt tag](https://lh3.googleusercontent.com/GbFFhQn9MecZeBsMQl0TLTBuKNWkT9Y1aRkkz10lwhqoHUKjmdfauN0zIckL-T1K8h2XIuXBbFHvWZgdJhcuBaAYJAKz0Qw)
+
+![alt tag](https://lh3.googleusercontent.com/sGJWUSHG5-Vk2QWj9KBWKutbSiqol8OLiArhJZeTqdp0J1cfMQlpAs181k8rvJr9FO986JIK-mgJUJ9rYSvWdw6bPTdQ2eo)
