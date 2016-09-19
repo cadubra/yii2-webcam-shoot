@@ -1,6 +1,6 @@
 Yii2 виджет для работы с WEB камерой
 ================================
-[Идея, взята здесь](https://myrusakov.ru/javascript-take-photos.html{:target="_blank"})
+[Идея, взята здесь](https://myrusakov.ru/javascript-take-photos.html)
 
 ##Виджет на стадии разработки и не готов к использованию!!!
 
