@@ -18,7 +18,7 @@ use yii\bootstrap\Modal;
 class WebcamShoot extends Widget {
 
     /**
-     * Текст заголовка диалогового окна (с тегами).
+     * Текст заголовка диалогового окна виджета (с тегами).
      */
     public $headerText = '<h4>WEB камера</h4>';
 
@@ -28,7 +28,7 @@ class WebcamShoot extends Widget {
     public $videoText = 'Видео';
 
     /**
-     * Текст заголовка окна видео (с тегами).
+     * Текст заголовка окна фото (с тегами).
      */
     public $photoText = 'Фото';
 
@@ -63,12 +63,12 @@ class WebcamShoot extends Widget {
     public $errorText = 'Камера недоступна или что-то пошло не так...';
 
     /**
-     * ID атрибута - цельи, для закгрузки в него фотографии (поле тег - input).
+     * ID атрибута - цели, для закгрузки в него фотографии (поле тег - input).
      */
     public $targetInputID = null;
 
     /**
-     * ID атрибута - цельи, для закгрузки в него фотографии (картинка тег - img).
+     * ID атрибута - цели, для закгрузки в него фотографии (картинка тег - img).
      */
     public $targetImgID = null;
 
