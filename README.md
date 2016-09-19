@@ -39,4 +39,4 @@ echo WebcamShoot::widget([
 ```
 
 ## Скриншоты
-![alt tag](https://photos.google.com/share/AF1QipOdwHSAGeDt4K0o0_-Onkgfml1zHRHsuj_zQ1G2y1Kb0Q1Ttg1K2WzTamvmuWPDqw/photo/AF1QipNOHQUW6ECvCKRiSQy9VEcUm4uti83y-lKsXhBJ?key=Z1QyZ01ra0FyOGRXVXpGQ0k1Q3lsT0VwbTBzZTVB)
+![alt tag](https://lh3.googleusercontent.com/b4jAv_4rJ1RDW4daO5fldoE1OS537aBPEbrXfMkPbdS1DH6mCsP8cit3NZ4nPGUQsgyu61i8k0pU5JAgQIcrg_VU2F25PR8)
