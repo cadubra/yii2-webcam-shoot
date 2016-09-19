@@ -2,13 +2,13 @@
 
 /**
  * @link https://github.com/timurmelnikov/yii2-webcam-shoot
+ *
  * @copyright Copyright (c) 2016 Timur Melnikov
  * @license MIT
  */
 
 namespace timurmelnikov\widgets;
 
-use Yii;
 use yii\base\Widget;
 use yii\bootstrap\Modal;
 
@@ -18,32 +18,47 @@ use yii\bootstrap\Modal;
 class WebcamShoot extends Widget {
 
     /**
-     * Текст заголовка диалогового окна (с тегами)
+     * Текст заголовка диалогового окна (с тегами).
      */
     public $headerText = '<h4>WEB камера</h4>';
 
     /**
-     * Текст заголовка окна видео (с тегами)
+     * Текст заголовка окна видео (с тегами).
      */
     public $videoText = 'Видео';
 
     /**
-     * Текст заголовка окна видео (с тегами)
+     * Текст заголовка окна видео (с тегами).
      */
     public $photoText = 'Фото';
 
     /**
-     * Текст кнопки вызова диалогового окна
+     * Текст кнопки вызова диалогового окна.
      */
-    public $buttonText = 'Сделать снимок WEB камерой';
+    public $buttonModalText = 'Сделать снимок WEB камерой';
 
     /**
-     * Текст заголовка сообщения об ошибке - недоступности камеры
+     * Текст кнопки захвата фото.
+     */
+    public $buttonCaptureText = 'Сделать снимок';
+
+    /**
+     * Текст кнопки ОК.
+     */
+    public $buttonOKText = 'OK';
+
+    /**
+     * Текст кнопки Отмена.
+     */
+    public $buttonCancelText = 'Отмена';
+
+    /**
+     * Текст заголовка сообщения об ошибке - недоступности камеры.
      */
     public $errorHeader = 'Ошибка!';
 
     /**
-     * Текст сообщения об ошибке - недоступности камеры
+     * Текст сообщения об ошибке - недоступности камеры.
      */
     public $errorText = 'Камера недоступна или что-то пошло не так...';
 
@@ -58,22 +73,17 @@ class WebcamShoot extends Widget {
     public $targetImgID = null;
 
     /**
-     * Ширина видео и фото в пикселях
+     * Ширина видео и фото в пикселях.
      */
     public $width = 380;
 
     /**
-     * Высота видео и фото в пикселях (рассчитывается автоматически)
+     * Высота видео и фото в пикселях (рассчитывается автоматически).
      */
     private $height;
 
-    /**
-     * Опции
-     */
-    public $htmlOptions = [];
-
     /*
-     * Тизер фото
+     * Заставка для фото
      */
     private $imgPhoto;
 
@@ -88,9 +98,7 @@ class WebcamShoot extends Widget {
 
         //Клиентский "динамически управляемый" JS
         $script = <<<JS
-                
 $("#yii2-webcam-shoot-ok").on('click', function () {
-
     if ({$this->targetInputID} != null) {
         //Сохранение фото в текстовом формате, для передачи на сервер
         $("#{$this->targetInputID}").val($("#yii2-webcam-shoot-photo").attr('src'));
@@ -99,18 +107,18 @@ $("#yii2-webcam-shoot-ok").on('click', function () {
         //Заполнение картинки
         $("#{$this->targetImgID}").attr('src', $("#yii2-webcam-shoot-photo").attr('src'));
     }
-    
 });
 JS;
         $view->registerJs($script);
     }
 
     /**
-     * Выполнение виджета
+     * Выполнение виджета.
      * @return string строка, содержащая HTML виджета
      */
     public function run() {
 
+        //Блок диалогового окна
         $html = <<<HTML
     <div class="row">
 
@@ -119,11 +127,8 @@ JS;
                 <strong>{$this->errorHeader}</strong> {$this->errorText}
             </div>
         </div>
-
     </div>
-
     <div class="row">
-
         <div  class="col-md-6 col-lg-6">
             <div class="panel panel-default">
                 <div class="panel-heading"><span class="glyphicon glyphicon-facetime-video"></span> {$this->videoText}</div>
@@ -132,7 +137,6 @@ JS;
                 </div>
             </div>
         </div>
-
         <div class="col-md-6 col-lg-6">
             <div class="panel panel-default">
                 <div class="panel-heading"><span class="glyphicon glyphicon-picture"> </span> {$this->photoText}</div>
@@ -142,30 +146,27 @@ JS;
                 </div>
             </div>
         </div>
-
     </div>
-
     <div class="row">
-
         <div class="col-md-12 col-lg-12">
-                <button id="yii2-webcam-shoot-capture" class="btn btn-warning btn-block">Сделать снимок</button>  
+                <button id="yii2-webcam-shoot-capture" class="btn btn-warning btn-block">{$this->buttonCaptureText}</button>
         </div>
-
     </div>
 HTML;
+        //Подвал диалогового окна (кнопки)
+        $footer = <<<FOOTER
+        <button id = "yii2-webcam-shoot-ok" type = "button" class = "btn btn-primary" data-dismiss = "modal">{$this->buttonOKText}</button>
+        <button id = "yii2-webcam-shoot-cancel" type = "button" class = "btn btn-default" data-dismiss = "modal">{$this->buttonCancelText}</button >
+FOOTER;
 
+        //Вызов модального окна
         Modal::begin([
             'header' => $this->headerText,
-            'toggleButton' => ['label' => $this->buttonText, 'id' => 'yii2-webcam-shoot-show', 'class' => 'btn btn-primary'],
+            'toggleButton' => ['label' => $this->buttonModalText, 'id' => 'yii2-webcam-shoot-show', 'class' => 'btn btn-primary'],
             'size' => 'modal-lg',
-            'footer' => '<div class="form-group">
-                            <button id="yii2-webcam-shoot-ok" type="button" class="btn btn-primary" data-dismiss="modal">ОК</button> 
-                            <button id="yii2-webcam-shoot-cancel" type="button" class="btn btn-default" data-dismiss="modal">Отмена</button> 
-                         </div>',
+            'footer' => $footer,
         ]);
-
         echo $html;
-
         Modal::end();
     }
 
