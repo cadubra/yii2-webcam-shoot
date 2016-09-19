@@ -61,11 +61,12 @@ print $success ? $file : 'Unable to save the file.';
 
 
 ## Скриншоты
-#Ошибка:
+
+Ошибка:
 ![alt tag](https://lh3.googleusercontent.com/B_czT9ySo4OlpcC_YDrCL3mjNJoVb86zdFK1nFp_Jj5pz-YBINoW5U6N3h5hZSjPFgKp6Rxek7_D_phAqomeZYpUpCd-oUM)
 
-#Изображение с камеры:
+Изображение с камеры:
 ![alt tag](https://lh3.googleusercontent.com/GbFFhQn9MecZeBsMQl0TLTBuKNWkT9Y1aRkkz10lwhqoHUKjmdfauN0zIckL-T1K8h2XIuXBbFHvWZgdJhcuBaAYJAKz0Qw)
 
-#Фото с камеры:
+Фото с камеры:
 ![alt tag](https://lh3.googleusercontent.com/sGJWUSHG5-Vk2QWj9KBWKutbSiqol8OLiArhJZeTqdp0J1cfMQlpAs181k8rvJr9FO986JIK-mgJUJ9rYSvWdw6bPTdQ2eo)
