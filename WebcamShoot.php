@@ -2,7 +2,6 @@
 
 /**
  * @link https://github.com/timurmelnikov/yii2-webcam-shoot
- *
  * @copyright Copyright (c) 2016 Timur Melnikov
  * @license MIT
  */
@@ -96,7 +95,6 @@ class WebcamShoot extends Widget {
         //Рассчет и присвоение высоты фото
         $this->height = $this->width / 4 * 3;
 
-        //Клиентский "динамически управляемый" JS
         $script = <<<JS
 $("#yii2-webcam-shoot-ok").on('click', function () {
     if ({$this->targetInputID} != null) {
@@ -114,7 +112,6 @@ JS;
 
     /**
      * Выполнение виджета.
-     * @return string строка, содержащая HTML виджета
      */
     public function run() {
 
