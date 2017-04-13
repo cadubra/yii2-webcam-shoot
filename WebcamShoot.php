@@ -146,7 +146,7 @@ JS;
     </div>
     <div class="row">
         <div class="col-md-12 col-lg-12">
-                <button id="yii2-webcam-shoot-capture" class="btn btn-warning btn-block">{$this->buttonCaptureText}</button>
+                <button type="button" id="yii2-webcam-shoot-capture" class="btn btn-warning btn-block">{$this->buttonCaptureText}</button>
         </div>
     </div>
 HTML;
