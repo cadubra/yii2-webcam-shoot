@@ -10,7 +10,7 @@ Yii2 виджет для работы с WEB камерой
 ## Системные требования
 Yii2 с установленным расширением "yiisoft/yii2-bootstrap" (входит в пакет установки Yii2 по умолчанию yiisoft/yii2-app-basic и yii2-app-advanced)
 Виджет, тестировался в браузерах:
-- Google Chrome v. 53.0.2785.116
+- Google Chrome v. 7 >
 - Firefox v. 48.0.2
 
 ## Установка
