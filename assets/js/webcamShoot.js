@@ -19,7 +19,9 @@ $(document).ready(function () {
                 audio: false
             },
                     function (stream) { //Если все ОК
-                        video.src = vendorUrl.createObjectURL(stream);
+                        //video.src = vendorUrl.createObjectURL(stream);
+                        // Chrome versao 7 > (replace src for srcObject)
+                        video.srcObject = vendorUrl.createObjectURL(stream);
                         video.play();
                         $('#yii2-webcam-shoot-capture').removeAttr('disabled');
                         $('#yii2-webcam-shoot-error').hide();
